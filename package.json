@@ -2,14 +2,9 @@
   "name": "app",
   "private": true,
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css"
+    "build:css": "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css"
   },
   "devDependencies": {
     "sass": "^1.89.0"
   }
-}
-
-"engines": {
-  "node": "24.1.0",
-  "npm": "11.3.0"
 }
