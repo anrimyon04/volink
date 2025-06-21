@@ -1,0 +1,62 @@
+<div class="blank1">
+  <div class="blank2">
+    <h2>投稿を確認</h2>
+    <div class="tweet">
+      <p><%= @tweet.body %></p>
+      <p><%= @tweet.created_at %></p>
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(@tweet) %>
+          <%= link_to tweet_like_path(id: @tweet.id, tweet_id: @tweet.id), data: { turbo_method: :delete } do %>
+            <i class="fas fa-heart"></i><%= @tweet.likes.count %>
+            <p>いいねを取り消す</p><%= @tweet.likes.count %>
+          <% end %>
+        <% else %>
+          <%= link_to tweet_likes_path(id: @tweet.id, tweet_id: @tweet.id), data: { turbo_method: :post }  do %>
+            <i class="far fa-heart"></i><%= @tweet.likes.count %>
+            <p>いいね</p><%= @tweet.likes.count %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <i class="far fa-heart"></i><%= @tweet.likes.count %>
+        <p>いいねの数 = </p><%= @tweet.likes.count %>
+      <% end %>
+
+      <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn-flat-border" %>
+    </div>
+
+    <h2>いいねしたユーザー</h2>
+    <% @tweet.liked_users.each do |user| %>
+      <li><%= user.email %></li>
+    <% end %>
+
+    <h2>コメント一覧</h2>
+    <div class="comment-wrapper">
+      <% @comments.each do |c| %>
+        <div>
+          <%= c.user.email unless c.user.blank? %>
+          <br>
+          <%= c.content %>
+        </div>
+        <br>
+      <% end %>
+
+      <% @tweet.tags.each do |tag| %>
+        <span><%= tag.name %></span>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= form_with(model: [@tweet, @comment], local: true) do |f| %>
+          <%= f.text_area :content %>
+          <%= button_tag type: "submit" do %>
+            <i class="far fa-comments"></i> コメントする
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= link_to "投稿一覧に戻る", tweets_path, class: "btn-flat-border" %>
+
+    <%= link_to "編集する", edit_tweet_path(@tweet.id), class: "btn-flat-border" %>
+
+  </div>
+</div>

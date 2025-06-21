@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "VoLink" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <div class="top-content-image-container">
+    </div>
+
+    
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <h1><span class="volink-title">Volink</span></h1>
+      <div class="header-list">
+        <ul>
+         <% if user_signed_in? %>
+         <li><%= link_to "ホーム", tweets_path %></li>
+         <li><%= link_to "新規投稿", tweets_new_path %></li>
+         <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: %></li>
+         <% else %>
+         <li><%= link_to "新規登録", new_user_registration_path %><li>
+         <li><%= link_to "ログイン", tweets_path %><li>
+         <% end %>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+      <script src="https://kit.fontawesome.com/9f9dcc150a.js" crossorigin="anonymous"></script>
+    </main>
+
+    <footer class="footer">
+      <ul class="md-flex">
+       <li><a href="<%= root_path %>">Volinkホーム</a></li>
+       <% if user_signed_in? %> <%# Deviseのヘルパー: ユーザーがログインしている場合にtrue %>
+       <li><a href="<%= user_path(current_user) %>">マイページ</a></li>
+       <% end %>
+       <li><a href="<%= new_tweet_path %>">新規投稿</a></li>
+      </ul>
+      <p>Copyright © GeekSalon All Rights Reserved.</p>
+   </footer>
+  </body>
+</html>
+
+

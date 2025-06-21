@@ -1,0 +1,48 @@
+<div class="blank1">
+  <div class="blank2">
+    <h2>新規登録</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+    <!-- サインアップ時に名前を入力できるようにフォームを追加 -->
+    <div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <!-- プロフィール画像アップロード用フィールド -->
+  <div class="field">
+    <%= f.label :image, "プロフィール画像" %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メール %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :パスワード%>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %>文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワードを確認する %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "サインアップ" %>
+  </div>
+  <% end %>
+  <%= render "users/shared/links" %>
+  </div>
+</div>
+
+<div class="new-post-header-image"> 
+  <%= image_tag "6.jpg", alt: "新規投稿バナー" %>
+  <h4>Volink<h4>
+  <h5>ボランティア活動をサポートします<h5>
+</div>

@@ -1,0 +1,279 @@
+<%= stylesheet_link_tag 'index', :media => "all" %>
+<div class="bg-img d-flex justify-content-center align-items-center mb-5">
+    <p class="bg-white p-3 rounded" style="opacity: 87%;">
+      Volinkとは、<br>
+      ボランティアを「したい」という声と<br>
+      活動を経験「した」という声が<br>
+      linkするためのボランティアプラットホームです。<br>
+    </p>
+</div>
+
+<h2 class="h2">興味のあるジャンルを見つけよう</h2>
+
+<div class="category-grid-container">
+  <div class="category-item">
+    <div class="icon-circle light-blue">
+      <i class="fa-solid fa-seedling category-icon"></i> <%# 自然・環境 %>
+    </div>
+    <p class="category-title">自然・環境</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-pink">
+      <i class="fa-solid fa-house-crack category-icon"></i> <%# 災害 %>
+    </div>
+    <p class="category-title">災害</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-blue">
+      <i class="fa-solid fa-capsules category-icon"></i> <%# 医療・福祉 %>
+    </div>
+    <p class="category-title">医療・福祉</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-pink">
+      <i class="fa-solid fa-earth-americas category-icon"></i> <%# グローバル %>
+    </div>
+    <p class="category-title">グローバル</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-blue">
+      <i class="fa-solid fa-medal category-icon"></i> <%# スポーツ %>
+    </div>
+    <p class="category-title">スポーツ</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-pink">
+      <i class="fa-solid fa-people-roof category-icon"></i> <%# ダイバーシティ (Font Awesome 6ではfa-people-groupなどかも) %>
+    </div>
+    <p class="category-title">ダイバーシティ</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-blue">
+      <i class="fa-solid fa-tree-city category-icon"></i> <%# まちづくり %>
+    </div>
+    <p class="category-title">まちづくり</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-pink">
+      <i class="fa-solid fa-palette category-icon"></i> <%# 文化・芸術 %>
+    </div>
+    <p class="category-title">文化・芸術</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <div class="category-item">
+    <div class="icon-circle light-blue">
+      <i class="fa-solid fa-children category-icon"></i> <%# 子ども支援など %>
+    </div>
+    <p class="category-title">子ども支援</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+
+  <%# 必要であれば10個目のアイテムを追加 %>
+  <%#
+  <div class="category-item">
+    <div class="icon-circle light-pink">
+      <i class="fas fa-handshake category-icon"></i>
+    </div>
+    <p class="category-title">協力・連携</p>
+    <p class="category-subtitle">ボランティア</p>
+  </div>
+  %>
+</div>
+
+<div class="tag-search-container"> 
+  <h2>ボランティア投稿を探す</h2>
+  <h4>ジャンルから検索<h4>
+  <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+  <%= text_field_tag :tag %>
+<% end %>
+  
+<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+  <div class="tag-checkboxes">
+      <% Tag.all.each do |tag| %>
+        <span class="tag-checkbox-item"> 
+          <%= check_box_tag "tag_ids[]", tag.id, false, id: "tag_#{tag.id}" %> 
+          <%= label_tag "tag_#{tag.id}", tag.name %>
+        </span>
+      <% end %>
+  </div>
+    <%= submit_tag '検索' , class: "btn-flat-border"%>
+  <% end %>
+</div>
+
+<div class="search-section">
+  <h4>キーワードから検索</h2>
+  <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search, nil, class: "keyword-search-input" %>
+   <%= submit_tag '検索', class: "btn-flat-border" %>
+  
+  <% end %>
+</div>
+
+<div class="posts-list-container">
+<h2>投稿一覧</h2>
+  <h4>みんなのボランティア経験を見てみよう<h4> 
+  <div class="tweets-container">
+    <% @tweets.each do |t| %>
+      <div class="tweet-card"> 
+        <% if t.image.attached? %>
+          <%= image_tag t.image, class: "tweet-card-image" %> 
+        <% else %>
+          <div class="tweet-card-placeholder-image"></div>
+        <% end %>
+
+        <div class="tweet-card-content">
+        <% if t.title.present? %>
+            <h4 class="tweet-card-volunteer-name"><%= t.title %></h4>
+          <% end %>
+
+          <p class="tweet-card-body"><%= t.body %></p>
+          <% if t.respond_to?(:tags) && t.tags.present? %>
+            <div class="tweet-card-categories">
+              <% t.tags.each do |tag| %>
+                <span class="tweet-card-category-tag"><%= tag.name %></span> 
+              <% end %>
+            </div>
+          <% end %> 
+
+          <div class="tweet-card-meta"> 
+            <%= link_to t.user.name, user_path(t.user.id), class: "tweet-card-username" %>
+            <span class="tweet-card-date"><%= t.created_at.strftime("%Y-%m-%d %H:%M") %></span> 
+          </div>
+
+          <div class="tweet-card-actions"> 
+            <div class="tweet-card-likes"> 
+              <% if user_signed_in? %>
+                <% if current_user.already_liked?(t) %>
+                  <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), data: { turbo_method: :delete } do %>
+                    <i class="fas fa-heart"></i><span><%= t.likes.count %></span>
+                    <span class="like-text">いいねを取り消す</span>
+                  <% end %>
+                <% else %>
+                  <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), data: { turbo_method: :post }  do %>
+                    <i class="fas fa-heart"></i><span><%= t.likes.count %></span>
+                    <span class="like-text">いいね</span>
+                  <% end %>
+                <% end %>
+              <% else %> 
+                <i class="fas fa-heart"></i><span><%= t.likes.count %></span>
+                <span class="like-text">いいねの数 = </span>
+              <% end %>
+            </div>
+
+            <div class="tweet-card-buttons"> 
+              <%= link_to "詳細", tweet_path(t.id), class: "btn-flat-border btn-small" %>
+              <%= link_to "編集", edit_tweet_path(t.id), class: "btn-flat-border btn-small" %>
+              <%= link_to "削除", tweet_path(t.id),  data: { turbo_method: :delete } , class: "btn-flat-border btn-small"%>
+            </div>
+          </div> 
+
+        </div> 
+
+      </div> 
+    <% end %> 
+  </div> 
+  <div class="pagination-section">
+    <%= page_entries_info @tweets %>
+    <%= paginate @tweets %>
+  </div>
+</div> 
+
+
+
+
+
+<div class="new-post-section">
+  <h2>新規投稿をする</h2>
+    <h4>ボランティア経験を投稿してみよう<h4> 
+  <div class="navigation-buttons">
+    <%= link_to "新規投稿へ", new_tweet_path, class: "btn-flat-border" %>
+  <h2>マイページへ</h2>
+    <h4>マイページで投稿やいいね一覧を確認しよう<h4> 
+  <% if user_signed_in? %>
+    <%= link_to "マイページへ", user_path(current_user.id) , class: "btn-flat-border"%>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="map-section-wrapper">
+<h2>Googleマップ</h2>
+<h4>気になるボランティア先を見つけたら場所を調べてみよう<h4>
+<div class="map-search-controls">
+  <input id="address" type="textbox" value="立命館大学">
+  <input type="button" value="検索" onclick="codeAddress()", class: "btn-flat-border">
+  <div id="display">表示結果</div>
+  <div id='map' style="width: 600px; height: 600px;"></div>
+</div>
+
+<style>
+# map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+<script>
+let map
+let geocoder
+const display = document.getElementById('display')
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.0331762, lng:135.7242997},
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    position:  {lat: 35.0331762, lng:-135.7242997},
+    map: map
+  });
+}
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      display.textContent = "検索結果：" + results[ 0 ].geometry.location
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC87RM5nf1Wu_WdcN4ptNrrUX-bv1kL8hg&callback=initMap" async defer></script>
+
+<div class="logout-button-container">
+  <%= button_to 'ログアウト', destroy_user_session_path, method: :delete , class: "btn-flat-border"%> 
+</div>
+<div class="new-post-header-image"> 
+  <%= image_tag "6.jpg", alt: "新規投稿バナー" %> 
+  <h4>Volink<h4>
+  <h5>ボランティア活動をサポートします<h5>
+</div>

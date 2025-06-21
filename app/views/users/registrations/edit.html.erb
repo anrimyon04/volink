@@ -1,0 +1,71 @@
+<div class="blank1">
+  <div class="blank2">
+  <h2>編集<%= resource_name.to_s.humanize %></h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <!--アカウント編集時に名前を入力できるようにフォームを追加-->
+  <div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+        <%= f.label :プロフィール画像 %>
+        <%= f.file_field :image %>
+  </div>
+
+  <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+  <div class="field">
+    <%= f.label :プロフィール %><br />
+    <%= f.text_area :profile, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :パスワード %> <i>(変更しない場合は空欄にしてください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> 文字は最低で必要です</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :新しいパスワードを確認する %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :現在のパスワード %> <i>(変更時に現在のパスワードが必要です)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "アップデート" %>
+  </div>
+  <% end %>
+  <h2>アカウントを削除しますか？</h2>
+  <div>Unhappy? 
+  <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+  <%= link_to "戻る", :back , class: "btn-flat-border"%>
+  </div>
+</div>
+
+<div class="new-post-header-image"> 
+  <%= image_tag "6.jpg", alt: "新規投稿バナー" %>
+  <h4>Volink<h4>
+  <h5>ボランティア活動をサポートします<h5>
+</div>
+
+
+
+

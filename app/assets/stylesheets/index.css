@@ -1,0 +1,211 @@
+  .tweets-container {
+    display: flex;          
+    flex-wrap: wrap;        
+    justify-content: flex-start; 
+    gap: 20px;              
+    width: 90%;             
+    max-width: 1200px;     
+    margin: 50px auto;
+    background-color: #f8f4e6;
+    min-height: 600px; 
+    padding-bottom: 20px;
+  }
+
+  .tweet-card {
+    flex: 0 0 calc(33.33% - 20px); 
+    box-sizing: border-box;
+    height: 200px; 
+    object-fit: cover; 
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px; 
+    border-bottom-right-radius: 8px;
+    display: block;
+  }
+
+  .tweet-card-image {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px; 
+    border-bottom-right-radius: 8px;
+    display: block; 
+  }
+
+  .tweet-card-volunteer-name {
+    font-size: 1.2rem; 
+    font-weight: bold;
+    color: #401F00; 
+    margin-bottom: 8px; 
+  }
+  .tweet-card-categories {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 5px; 
+  }
+  .tweet-card-category-tag {
+    background-color: #e0f0d0; 
+    color: #00552e; 
+    padding: 4px 8px; 
+    border-radius: 4px; 
+    font-size: 0.8rem; 
+    white-space: nowrap; 
+  }
+  .top-page-image {
+    width: 100%;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }
+
+  h2 {
+    position: relative;
+    padding: 1.5rem;
+    text-align: center;
+    color: #401F00;
+  }
+  
+  h2:before {
+    position: absolute;
+    bottom: -10px;
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 5px;
+    content: '';
+    border-radius: 3px;
+    background: #000;
+  }
+
+  h3 {
+    width: 100px;
+    margin: 30px auto;
+    text-align: left;
+    color: #401F00;
+  }
+
+  h4 {
+    position: relative;
+    padding: 0rem;
+    text-align: center;
+    color: #401F00;
+  }
+
+  h5 {
+    position: relative;
+    padding: 0rem;
+    text-align: center;
+    color: #401F00;
+  }
+
+  .main-box {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .time {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .btn-square-pop {
+    position: relative;
+    display: inline-block;
+    padding: 0.7em 1.1em;
+    text-decoration: none;
+    color: #f8f4e6;
+    background: #a2cc89;
+    border-bottom: solid 2px #a2cc89;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .button-group {
+    text-align: center; 
+    margin-top: 20px; 
+    margin-bottom: 50px; 
+  }
+
+  .posts-list-container,
+  .tag-search-container {
+    width: 80%;
+    max-width: 960px; 
+    margin: 30px auto; 
+    background-color: #f8f4e6;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px #f8f4e6(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+
+  .search-section {
+    margin-bottom: 30px; 
+    gap: 10px;            
+    margin-top: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+  }
+
+  .search-form {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    margin-top: 15px; 
+    width: 100%;
+  }
+
+  .search-form input[type="text"] {
+    width: 600px; 
+    max-width: 100%; 
+    height: 35px;
+  }
+
+  .search-form .keyword-search-input { /* .search-form の中にこのクラスを持つ input を指定 */
+    width: 700px; /* 希望の幅に調整してください */
+    max-width: 90%; /* 必要であれば調整 */
+    height: 35px; /* 既存のheightを維持したい場合 */
+    /* new.cssのwidth: 100%を上書きするため、具体的なpx値かmax-widthを使うのが良い */
+}
+
+  .navigation-buttons {
+    text-align: center; 
+    margin-top: 25px; 
+    margin-bottom: 60px; 
+  }
+
+  .new-post-section h2 {
+    text-align: center;
+    margin-bottom: 20px; 
+  }
+  .pagination-section {
+    text-align: center; 
+    margin-top: 40px; 
+    margin-bottom: 70px; 
+  }
+
+  .paginate { 
+    margin-top: 100px; 
+    text-align: center; 
+    padding: 0;
+    list-style: none; 
+    display: inline-block;
+  }
+  
+  .page_entries_info { 
+      margin-top: 100px; 
+      margin-bottom: 10px; 
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+  }
+
+  

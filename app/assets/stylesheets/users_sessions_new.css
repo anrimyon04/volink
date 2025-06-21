@@ -1,0 +1,112 @@
+.blank1{
+display: flex;
+justify-content: center;
+align-items: center;
+} 
+
+.blank2{
+text-align: center;
+width: 50%;
+max-width: 500px;
+margin: 50px auto;
+color: #401F00;
+background: #f8f4e6;
+border-radius: 10px;
+padding: 20px 40px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+} 
+
+
+.blank2 .field {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  gap: 1px;
+}
+
+
+.field label {
+font-weight: 100;
+font-size: 15px;
+text-align: left; 
+display: block;
+margin: 0 auto;   
+margin-left: auto; 
+margin-right: auto;
+width: 200px;
+} 
+
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="text"] { 
+  border-style: none; 
+  width: 200px;
+  height: 30px;
+  background: #f8f4e6;
+  border-radius: 10px;
+  border: 2px solid #a2cc89; 
+  margin: 30px auto;
+  display: block;
+}
+
+.actions input[type="submit"] {
+width: 150px;
+height: 30px;
+background: #f8f4e6;
+border-radius: 10px;
+border: 2px #a2cc89 solid;
+margin: 30px auto;
+} 
+
+.actions input[type="submit"]:hover {
+cursor: pointer;
+background: linear-gradient(to bottom,#a2cc89,#a2cc89);
+color: #401F00;
+border-radius: 10px;
+border: 2px #a2cc89 solid;
+margin: 30px auto;
+} 
+
+.blank2 .field input[type="checkbox"] {
+  vertical-align: middle; 
+  width: 16px; 
+  height: 16px; 
+  margin: 0;
+}
+
+.blank2 .field label[for="user_remember_me"] { 
+    display: inline-block;
+    width: auto; 
+    margin: 0; 
+    text-align: left; 
+    vertical-align: middle;
+}
+
+.blank2 .actions {
+    text-align: center; 
+    margin-top: 30px;
+}
+.blank2 .actions input[type="submit"] {
+    display: inline-block;
+}
+
+.blank2 h2,
+.blank2 h3 {
+  text-align: center; 
+}
+
+.blank2 .user-info-section,
+.blank2 .user-posts-section,
+.blank2 .user-likes-section {
+  text-align: left; /* ★セクションの内容を左寄せに戻す */
+  margin: 0 auto; /* ★中央の箱の中で、このセクション自体を中央寄せにしたい場合 */
+  width: 90%; /* 幅も調整 */
+  max-width: 400px; /* 例 */
+}
+
+/* ボタンも中央寄せにする */
+.blank2 .btn-flat-border {
+  display: inline-block; /* text-align: center が効くように */
+  margin-top: 20px;
+}

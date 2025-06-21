@@ -1,0 +1,43 @@
+<div class="blank1">
+  <div class="blank2">
+    <h2>新規投稿する</h2>
+    <%= form_for @tweet do |f| %>
+    <div class="field">
+    <%= f.label :ボランティア名 %>
+    <%= f.text_field :title %>
+    </div>
+
+    <div class='form-group'>
+     <label>カテゴリ</label>
+      <div class="checkbox-container"> 
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="field">
+      <%= f.label :本文 %>
+      <%= f.text_field :body, :size => 140 %>
+    </div>
+
+    <div class="field">
+    <%= f.label :画像 %>
+    <%= f.file_field :image %>
+    </div>
+    <%= f.submit "投稿する", class: "btn-flat-border" %>
+    <% end %>
+    <%= link_to "投稿一覧に戻る", tweets_path, class: "btn-flat-border" %>
+  </div>
+</div>
+
+<div class="new-post-header-image"> 
+  <%= image_tag "6.jpg", alt: "新規投稿バナー" %>
+  <h4>Volink<h4>
+  <h5>ボランティア活動をサポートします<h5>
+</div>
