@@ -398,3 +398,7 @@ form {
   display: inline-block; /* margin: auto で中央寄せできるように */
   width: 370px;
 }
+
+@import "index";
+@import "new";
+@import "users_sessions_new";
